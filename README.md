@@ -1,4 +1,4 @@
-# FaST: Unlocking One-Week-Ahead Long-Term Forecasting
+# FaST: 
 
 ## 1.实验细节
 
