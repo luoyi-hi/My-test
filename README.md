@@ -38,7 +38,7 @@
 
 ### 1.2数据准备
 
-数据集可以从该链接下载：https://www.kaggle.com/datasets/liuxu77/largest，该链接一共有7个文件，为了复现我们的实验结果，您只需下载：“ca_his_raw_2019.h5”、“ca_meta.csv”、“ca_rn_adj.npy”这三个文件
+数据集可以从该链接下载：https://www.kaggle.com/datasets/liuxu77/largest.该链接一共有7个文件，为了复现我们的实验结果，您只需下载：“ca_his_raw_2019.h5”、“ca_meta.csv”、“ca_rn_adj.npy”这三个文件
 
 将下载好的数据解压放到row_dataset目录下，然后按顺序使用下面的命令生成模型训练所需的流量数据。
 
