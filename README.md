@@ -214,7 +214,7 @@ python experiments/train_seed.py -c baselines/GWNet/sd_96_672.py -g 0
 # SGP
 # 请参考："https://github.com/Graph-Machine-Learning-Group/sgp"配置相关环境
 # 切换到sgp目录
-# 复制数据
+cd BasicTS-master/baselines/sgp-main
 python experiments/run_traffic_sgps_sd_96_48.py 
 python experiments/run_traffic_sgps_sd_96_96.py 
 python experiments/run_traffic_sgps_sd_96_192.py 
@@ -223,6 +223,7 @@ python experiments/run_traffic_sgps_sd_96_672.py
 # RPMixer
 # 请参考："https://sites.google.com/view/rpmixer"配置相关环境
 # 切换到RPMixer目录
+cd BasicTS-master/baselines/RPMixer
 python sd_96_48.py
 python sd_96_96.py
 python sd_96_192.py
