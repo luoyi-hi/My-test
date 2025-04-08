@@ -20,7 +20,7 @@
 | Type      | The type of a sensor                          | Mainline                              |
 | Direction | The direction of the highway                  | N, S, E, W                            |
 
-我们所使用的是2019年的CA数据集，先通过滑动窗口得到所有样本，然后样本按6:2:2的比例进行划分，从而得到训练集，验证集和测试集，其中数据集的统计可以参考表2：
+我们所使用的是2019年的SD,GLA和CA数据集，先通过滑动窗口得到所有样本，然后样本按6:2:2的比例进行划分，从而得到训练集，验证集和测试集，其中数据集的统计可以参考表2：
 
 #### Table 2: **Dataset statistics**
 
