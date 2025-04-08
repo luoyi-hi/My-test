@@ -62,7 +62,7 @@ python row_dataset/generate_idx.py
 
 ### 1.3数据介绍
 
-生成的数据会存放在BasicTS-master/datasets目录下，其中每个数据目录下的“his.npz”存放了数据的原始流量特征，以及对应的日特征和周特征，“adj_mx.pkl”是数据对应的邻接矩阵，desc.json存储了数据的信息。其它形如“{input_len}_{output_len}”的文件夹，里面存放了其对应预测长度的训练集，验证集和测试集的样本索引，其中每个预测步数对应的训练集，验证集，测试集的样本数参考表3：
+生成的数据会存放在“BasicTS-master/datasets“目录下，其中每个数据目录下的“his.npz”存放了数据的原始流量特征，以及对应的日特征和周特征，“adj_mx.pkl”是数据对应的邻接矩阵，desc.json存储了数据的信息。其它形如“{input_len}_{output_len}”的文件夹，里面存放了其对应预测长度的训练集，验证集和测试集的样本索引，其中每个预测步数对应的训练集，验证集，测试集的样本数参考表3：
 
 #### Table 3: The number of training, validation, and test samples for each forecast horizon
 
@@ -75,7 +75,7 @@ python row_dataset/generate_idx.py
 
 ### 1.4实验运行
 
-我们的代码基于 BasicTS 实现，FaST模型采用了Adam优化器，初始学习率设为0.002，并添加了权重衰减参数0.0001以增强正则化效果。在FaST训练过程中，学习率调度策略使用了 `MultiStepLR`，在第10、20、30、40与50轮时进行衰减，每次将当前学习率乘以0.5，从而实现多阶段的渐进式优化，有助于模型更稳定地收敛。所有方法的最大训练轮次为100，在验证集上使用早停策略确定最佳参数。所有实验使用MAE、RMSE和MAPE评估模型性能。所有实验在AMD EPYC 7532 @2.40GHz，NVIDIA RTX A6000 GPU（48GB），128GB RAM和Ubuntu 20.04的环境下，进行了实验。我们采用 PyTorch 2.2.1 作为默认的深度学习库，使用的python版本是3.11。
+我们的模型基于 BasicTS 实现，FaST模型采用了Adam优化器，初始学习率设为0.002，并添加了权重衰减参数0.0001以增强正则化效果。在FaST训练过程中，学习率调度策略使用了 `MultiStepLR`，在第10、20、30、40与50轮时进行衰减，每次将当前学习率乘以0.5，从而实现多阶段的渐进式优化，有助于模型更稳定地收敛。所有方法的最大训练轮次为100，在验证集上使用早停策略确定最佳参数。所有实验使用MAE、RMSE和MAPE评估模型性能。所有实验在AMD EPYC 7532 @2.40GHz，NVIDIA RTX A6000 GPU（48GB），128GB RAM和Ubuntu 20.04的环境下，进行了实验。我们采用 PyTorch 2.2.1 作为默认的深度学习库，使用的python版本是3.11。
 
 请转到“BasicTS-master”目录下，然后可以使用以下命令来运行我们的模型：
 
