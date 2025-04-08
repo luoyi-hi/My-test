@@ -543,10 +543,6 @@ class BaseEpochRunner(metaclass=ABCMeta):
         test_end_time = time.time()
         self.update_epoch_meter("test/time", test_end_time - test_start_time)
         self.print_epoch_meters("test")
-        if train_epoch is not None:
-            self.plt_epoch_meters("test", train_epoch // self.val_interval)
-
-        self.on_validating_end(train_epoch)
 
     def test_iters_4OOM(
         self, iter_index: int, data: Union[torch.Tensor, Tuple]
