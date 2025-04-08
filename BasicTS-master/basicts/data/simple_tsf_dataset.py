@@ -221,7 +221,6 @@ class MyTimeSeries(BaseDataset):
         test_idx = np.load(self.data_file_path + sample_path + "/idx_test.npy")
 
         if self.mode == "train":
-            offset = self.output_len if self.overlap else 0
             return data[
                 train_idx[0] - self.output_len - self.input_len + 1 : train_idx[-1] + 1
             ].copy()

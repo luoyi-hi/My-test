@@ -133,7 +133,6 @@ class MyZScoreScaler(BaseScaler):
         super().__init__(dataset_name, train_ratio, norm_each_channel, rescale)
         self.target_channel = 0  # assuming normalization on the first channel
         sample_path = "/" + str(input_len) + "_" + str(output_len)
-        # load dataset description and data
         description_file_path = f"datasets/{dataset_name}/desc.json"
         with open(description_file_path, "r") as f:
             description = json.load(f)
@@ -144,7 +143,6 @@ class MyZScoreScaler(BaseScaler):
 
         train_idx = np.load(data_file_path + sample_path + "/idx_train.npy")
 
-        # split data into training set based on the train_ratio
         train_size = int(train_idx[-1])
         train_data = data[: train_size + 1, :, self.target_channel].copy()
 
