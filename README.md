@@ -40,9 +40,15 @@
 
 数据集可以从该链接下载：https://www.kaggle.com/datasets/liuxu77/largest. 该链接一共有7个文件，为了复现我们的实验结果，您只需下载：“ca_his_raw_2019.h5”、“ca_meta.csv”、“ca_rn_adj.npy”这三个文件
 
+通过以下命令安装环境依赖：
+
+```shell
+pip install -r requirements.txt
+```
+
 将下载好的数据解压放到row_dataset目录下，然后按顺序使用下面的命令生成模型训练所需的流量数据。
 
-```sh
+```shell
 python row_dataset/generate_data.py
 
 python row_dataset/generate_data_for_training.py --dataset ca --years 2019
@@ -70,12 +76,6 @@ python row_dataset/generate_idx.py
 ### 1.4实验运行
 
 我们的代码基于 BasicTS 实现，FaST模型采用了Adam优化器，初始学习率设为0.002，并添加了权重衰减参数0.0001以增强正则化效果。在FaST训练过程中，学习率调度策略使用了 `MultiStepLR`，在第10、20、30、40与50轮时进行衰减，每次将当前学习率乘以0.5，从而实现多阶段的渐进式优化，有助于模型更稳定地收敛。所有方法的最大训练轮次为100，在验证集上使用早停策略确定最佳参数。所有实验使用MAE、RMSE和MAPE评估模型性能。所有实验在AMD EPYC 7532 @2.40GHz，NVIDIA RTX A6000 GPU（48GB），128GB RAM和Ubuntu 20.04的环境下，进行了实验。我们采用 PyTorch 2.2.1 作为默认的深度学习库，使用的python版本是3.11。
-
-通过以下命令安装其它依赖：
-
-```shell
-pip install -r requirements.txt
-```
 
 请转到“BasicTS-master”目录下，然后可以使用以下命令来运行我们的模型：
 
