@@ -80,19 +80,19 @@ Our model is implemented based on the "BasicTS" framework. The FaST model uses t
 Go to the “BasicTS-master” directory and use the following commands to run our model:
 
 ```shell
-# SD
+# FaST on SD dataset
 python experiments/train_seed.py -c baselines/FaST/sd_96_48.py -g 0
 python experiments/train_seed.py -c baselines/FaST/sd_96_96.py -g 0
 python experiments/train_seed.py -c baselines/FaST/sd_96_192.py -g 0
 python experiments/train_seed.py -c baselines/FaST/sd_96_672.py -g 0
 
-# GLA
+# FaST on GLA dataset
 python experiments/train_seed.py -c baselines/FaST/gla_96_48.py -g 0
 python experiments/train_seed.py -c baselines/FaST/gla_96_96.py -g 0
 python experiments/train_seed.py -c baselines/FaST/gla_96_192.py -g 0
 python experiments/train_seed.py -c baselines/FaST/gla_96_672.py -g 0
 
-# CA
+# FaST on CA dataset
 python experiments/train_seed.py -c baselines/FaST/ca_96_48.py -g 0
 python experiments/train_seed.py -c baselines/FaST/ca_96_96.py -g 0
 python experiments/train_seed.py -c baselines/FaST/ca_96_192.py -g 0
