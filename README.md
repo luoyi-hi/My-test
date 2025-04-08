@@ -113,80 +113,80 @@ python experiments/evaluate.py -cfg  baselines/FaST/sd_96_48.py -ckpt Parameters
 
 ```shell
 # STID
-# SD
+# STID on SD dataset
 python experiments/train_seed.py -c baselines/STID/sd_96_48.py -g 0
 python experiments/train_seed.py -c baselines/STID/sd_96_96.py -g 0
 python experiments/train_seed.py -c baselines/STID/sd_96_192.py -g 0
 python experiments/train_seed.py -c baselines/STID/sd_96_672.py -g 0
-# GLA
+# STID on GLA dataset
 python experiments/train_seed.py -c baselines/STID/gla_96_48.py -g 0
 python experiments/train_seed.py -c baselines/STID/gla_96_96.py -g 0
 python experiments/train_seed.py -c baselines/STID/gla_96_192.py -g 0
 python experiments/train_seed.py -c baselines/STID/gla_96_672.py -g 0
-# CA
+# STID on CA dataset
 python experiments/train_seed.py -c baselines/STID/ca_96_48.py -g 0
 python experiments/train_seed.py -c baselines/STID/ca_96_96.py -g 0
 python experiments/train_seed.py -c baselines/STID/ca_96_192.py -g 0
 python experiments/train_seed.py -c baselines/STID/ca_96_672.py -g 0
 
 # DLinear
-# SD
+# DLinear on SD dataset
 python experiments/train_seed.py -c baselines/DLinear/sd_96_48.py -g 0
 python experiments/train_seed.py -c baselines/DLinear/sd_96_96.py -g 0
 python experiments/train_seed.py -c baselines/DLinear/sd_96_192.py -g 0
 python experiments/train_seed.py -c baselines/DLinear/sd_96_672.py -g 0
-# GLA
+# DLinear on GLA dataset
 python experiments/train_seed.py -c baselines/DLinear/gla_96_48.py -g 0
 python experiments/train_seed.py -c baselines/DLinear/gla_96_96.py -g 0
 python experiments/train_seed.py -c baselines/DLinear/gla_96_192.py -g 0
 python experiments/train_seed.py -c baselines/DLinear/gla_96_672.py -g 0
-# CA
+# DLinear on CA dataset
 python experiments/train_seed.py -c baselines/DLinear/ca_96_48.py -g 0
 python experiments/train_seed.py -c baselines/DLinear/ca_96_96.py -g 0
 python experiments/train_seed.py -c baselines/DLinear/ca_96_192.py -g 0
 python experiments/train_seed.py -c baselines/DLinear/ca_96_672.py -g 0
 
 # NHITS
-# SD
-python experiments/train_seed.py -c baselines/NHITS/sd_96_48.py -g 0
-python experiments/train_seed.py -c baselines/NHITS/sd_96_96.py -g 0
-python experiments/train_seed.py -c baselines/NHITS/sd_96_192.py -g 0
-python experiments/train_seed.py -c baselines/NHITS/sd_96_672.py -g 0
-# GLA
-python experiments/train_seed.py -c baselines/NHITS/gla_96_48.py -g 0
-python experiments/train_seed.py -c baselines/NHITS/gla_96_96.py -g 0
-python experiments/train_seed.py -c baselines/NHITS/gla_96_192.py -g 0
-python experiments/train_seed.py -c baselines/NHITS/gla_96_672.py -g 0
-# CA
-python experiments/train_seed.py -c baselines/NHITS/ca_96_48.py -g 0
-python experiments/train_seed.py -c baselines/NHITS/ca_96_96.py -g 0
-python experiments/train_seed.py -c baselines/NHITS/ca_96_192.py -g 0
-python experiments/train_seed.py -c baselines/NHITS/ca_96_672.py -g 0
+# NHITS on SD dataset
+python experiments/train_seed.py -c baselines/NHiTS/sd_96_48.py -g 0
+python experiments/train_seed.py -c baselines/NHiTS/sd_96_96.py -g 0
+python experiments/train_seed.py -c baselines/NHiTS/sd_96_192.py -g 0
+python experiments/train_seed.py -c baselines/NHiTS/sd_96_672.py -g 0
+# NHITS on GLA dataset
+python experiments/train_seed.py -c baselines/NHiTS/gla_96_48.py -g 0
+python experiments/train_seed.py -c baselines/NHiTS/gla_96_96.py -g 0
+python experiments/train_seed.py -c baselines/NHiTS/gla_96_192.py -g 0
+python experiments/train_seed.py -c baselines/NHiTS/gla_96_672.py -g 0
+# NHITS on CA dataset
+python experiments/train_seed.py -c baselines/NHiTS/ca_96_48.py -g 0
+python experiments/train_seed.py -c baselines/NHiTS/ca_96_96.py -g 0
+python experiments/train_seed.py -c baselines/NHiTS/ca_96_192.py -g 0
+python experiments/train_seed.py -c baselines/NHiTS/ca_96_672.py -g 0
 
 # CycleNet
-# SD
+# CycleNet on SD dataset
 python experiments/train_seed.py -c baselines/CycleNet/sd_96_48.py -g 0
 python experiments/train_seed.py -c baselines/CycleNet/sd_96_96.py -g 0
 python experiments/train_seed.py -c baselines/CycleNet/sd_96_192.py -g 0
 python experiments/train_seed.py -c baselines/CycleNet/sd_96_672.py -g 0
-# GLA
+# CycleNet on GLA dataset
 python experiments/train_seed.py -c baselines/CycleNet/gla_96_48.py -g 0
 python experiments/train_seed.py -c baselines/CycleNet/gla_96_96.py -g 0
 python experiments/train_seed.py -c baselines/CycleNet/gla_96_192.py -g 0
 python experiments/train_seed.py -c baselines/CycleNet/gla_96_672.py -g 0
-# CA
+# CycleNet on CA dataset
 python experiments/train_seed.py -c baselines/CycleNet/ca_96_48.py -g 0
 python experiments/train_seed.py -c baselines/CycleNet/ca_96_96.py -g 0
 python experiments/train_seed.py -c baselines/CycleNet/ca_96_192.py -g 0
 python experiments/train_seed.py -c baselines/CycleNet/ca_96_672.py -g 0
 
 # DCRNN
-# SD
+# DCRNN on SD dataset
 python experiments/train_seed.py -c baselines/DCRNN/sd_96_48.py -g 0
 python experiments/train_seed.py -c baselines/DCRNN/sd_96_96.py -g 0
 
 # BigST
-# SD
+# BigST on SD dataset
 python experiments/train_seed.py -c baselines/BigST/sd_96_48.py -g 0
 python experiments/train_seed.py -c baselines/BigST/sd_96_48_2.py -g 0
 python experiments/train_seed.py -c baselines/BigST/sd_96_96.py -g 0
@@ -197,14 +197,14 @@ python experiments/train_seed.py -c baselines/BigST/sd_96_672.py -g 0
 python experiments/train_seed.py -c baselines/BigST/sd_96_672_2.py -g 0
 
 # STGCN
-# SD
+# STGCN on SD dataset
 python experiments/train_seed.py -c baselines/STGCN/sd_96_48.py -g 0
 python experiments/train_seed.py -c baselines/STGCN/sd_96_96.py -g 0
 python experiments/train_seed.py -c baselines/STGCN/sd_96_192.py -g 0
 python experiments/train_seed.py -c baselines/STGCN/sd_96_672.py -g 0
 
 # GWNet
-# SD
+# GWNet on SD dataset
 python experiments/train_seed.py -c baselines/GWNet/sd_96_48.py -g 0
 python experiments/train_seed.py -c baselines/GWNet/sd_96_96.py -g 0
 python experiments/train_seed.py -c baselines/GWNet/sd_96_192.py -g 0
@@ -215,6 +215,7 @@ python experiments/train_seed.py -c baselines/GWNet/sd_96_672.py -g 0
 # 请参考："https://github.com/Graph-Machine-Learning-Group/sgp"配置相关环境
 # 切换到sgp目录
 cd BasicTS-master/baselines/sgp-main
+# SGP on SD dataset
 python experiments/run_traffic_sgps_sd_96_48.py 
 python experiments/run_traffic_sgps_sd_96_96.py 
 python experiments/run_traffic_sgps_sd_96_192.py 
@@ -224,14 +225,15 @@ python experiments/run_traffic_sgps_sd_96_672.py
 # 请参考："https://sites.google.com/view/rpmixer"配置相关环境
 # 切换到RPMixer目录
 cd BasicTS-master/baselines/RPMixer
+# RPMixer on SD dataset
 python sd_96_48.py
 python sd_96_96.py
 python sd_96_192.py
 python sd_96_672.py
-# GLA
+# RPMixer on GLA dataset
 python gla_96_48.py
 python gla_96_96.py
-# CA
+# RPMixer on CA dataset
 python ca_96_48.py
 
 ```
