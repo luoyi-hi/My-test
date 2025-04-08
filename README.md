@@ -1,10 +1,10 @@
 # FaST: 
 
-## 1.实验细节
+## 1.Experimental Details
 
-### 1.1数据集描述
+### 1.1Dataset Description
 
-我们使用的 CA 数据集来源于由加利福尼亚交通局（CalTrans）维护的性能测量系统（PeMS），具体来源请参考文献 [1]。其中，圣地亚哥（SD）和大洛杉矶地区（GLA）是从 CA 数据集中选取的两个具有代表性的子区域，分别包含 716 个和 3834 个传感器。所有传感器的元数据信息汇总如表 1 所示:
+The CA dataset we use is from the Performance Measurement System (PeMS) maintained by the California Department of Transportation (CalTrans). For specific details, refer to the literature [1]. The San Diego (SD) and Greater Los Angeles (GLA) areas are two representative subregions selected from the CA dataset, containing 716 and 3834 sensors, respectively. The metadata for all sensors is summarized in Table 1:
 
 #### Table 1: Sensor Metadata Description
 
@@ -20,33 +20,33 @@
 | Type      | The type of a sensor                          | Mainline                              |
 | Direction | The direction of the highway                  | N, S, E, W                            |
 
-我们所使用的是2019年的SD,GLA和CA数据集，先通过滑动窗口得到所有样本，然后样本按6:2:2的比例进行划分，从而得到训练集，验证集和测试集，其中数据集的统计可以参考表2：
+We use the 2019 SD, GLA, and CA datasets. First, we obtain all samples through a sliding window, then split the samples into training, validation, and test sets in a 6:2:2 ratio. The statistics of the dataset are summarized in Table 2:
 
 #### Table 2: **Dataset statistics**
 
-| Data | #nodes | Time interval | Time range           | 标准差 | 均值   | 使用特征     |
+| Data | #nodes | Time interval | Time range           | Std    | Mean   | Features     |
 | ---- | ------ | ------------- | -------------------- | ------ | ------ | ------------ |
 | SD   | 716    | 15 minute     | [1/1/2019, 1/1/2020) | 184.02 | 244.31 | traffic flow |
 | GLA  | 3,834  | 15 minute     | [1/1/2019, 1/1/2020) | 187.77 | 276.82 | traffic flow |
 | CA   | 8,600  | 15 minute     | [1/1/2019, 1/1/2020) | 177.12 | 237.39 | traffic flow |
 
-想要得到更多的数据集细节信息，请参考文献[1]。
+For more dataset details, refer to literature [1].
 
 **Reference**
 
 [1] Xu Liu, Yutong Xia, Yuxuan Liang, Junfeng Hu, Yiwei Wang, Lei Bai, Chao Huang, Zhenguang Liu, Bryan Hooi, and Roger Zimmermann. 2023. LargeST: A Benchmark Dataset for Large-Scale Traffic Forecasting. In The Annual Conference on Neural Information Processing Systems. New Orleans, LA, USA.
 
-### 1.2数据准备
+### 1.2Data Preparation
 
-数据集可以从该链接下载：https://www.kaggle.com/datasets/liuxu77/largest. 该链接一共有7个文件，为了复现我们的实验结果，您只需下载：“ca_his_raw_2019.h5”、“ca_meta.csv”、“ca_rn_adj.npy”这三个文件
+The dataset can be downloaded from the following link: https://www.kaggle.com/datasets/liuxu77/largest. The link contains seven files. To reproduce our experiment results, you need to download the following three files: “ca_his_raw_2019.h5”, “ca_meta.csv”, “ca_rn_adj.npy”.
 
-通过以下命令安装环境依赖：
+Install environment dependencies using the following command:
 
 ```shell
 pip install -r requirements.txt
 ```
 
-将下载好的数据解压放到"row_dataset"目录下，然后按顺序使用下面的命令生成模型训练所需的流量数据。
+Unzip the downloaded data into the "row_dataset" directory. Then, sequentially use the following commands to generate the traffic data required for model training:
 
 ```shell
 python row_dataset/generate_data.py
@@ -60,9 +60,9 @@ python row_dataset/process_adj.py
 python row_dataset/generate_idx.py
 ```
 
-### 1.3数据介绍
+### 1.3Data Description
 
-生成的数据会存放在“BasicTS-master/datasets“目录下，其中每个数据目录下的“his.npz”存放了数据的原始流量特征，以及对应的日特征和周特征，“adj_mx.pkl”是数据对应的邻接矩阵，desc.json存储了数据的信息。其它形如“{input_len}_{output_len}”的文件夹，里面存放了其对应预测长度的训练集，验证集和测试集的样本索引，其中每个预测步数对应的训练集，验证集，测试集的样本数参考表3：
+The generated data will be stored in the “BasicTS-master/datasets” directory. In each data directory, the “his.npz” file contains the raw traffic flow features, as well as the corresponding daily and weekly features. The “adj_mx.pkl” file contains the adjacency matrix for the data, and “desc.json” stores the data information. Other folders, such as “{input_len}_{output_len}”, store the sample indices for the training, validation, and test sets for the corresponding forecast length. The number of samples for each forecast step is summarized in Table 3:
 
 #### Table 3: The number of training, validation, and test samples for each forecast horizon
 
@@ -73,11 +73,11 @@ python row_dataset/generate_idx.py
 | 192              | 20851                      | 6950                             | 6952                   |
 | 672              | 20563                      | 6854                             | 6856                   |
 
-### 1.4实验运行
+### 1.4Experiment Execution
 
-我们的模型基于 "BasicTS" 框架实现，FaST模型采用了Adam优化器，初始学习率设为0.002，并添加了权重衰减参数0.0001以增强正则化效果。在FaST训练过程中，学习率调度策略使用了 `MultiStepLR`，在第10、20、30、40与50轮时进行衰减，每次将当前学习率乘以0.5，从而实现多阶段的渐进式优化，有助于模型更稳定地收敛。所有方法的最大训练轮次为100，在验证集上使用早停策略确定最佳参数。所有实验使用MAE、RMSE和MAPE评估模型性能。所有实验在AMD EPYC 7532 @2.40GHz，NVIDIA RTX A6000 GPU（48GB），128GB RAM和Ubuntu 20.04的环境下，进行了实验。我们采用 PyTorch 2.2.1 作为默认的深度学习库，使用的python版本是3.11。
+Our model is implemented based on the "BasicTS" framework. The FaST model uses the Adam optimizer with an initial learning rate of 0.002, and a weight decay parameter of 0.0001 for regularization. During the FaST training process, the learning rate scheduling strategy uses `MultiStepLR`, which decays the learning rate by a factor of 0.5 at the 10th, 20th, 30th, 40th, and 50th epochs for multi-stage progressive optimization, helping the model converge more stably. The maximum training epochs for all methods are set to 100, with early stopping on the validation set to determine the best parameters. The performance is evaluated using MAE, RMSE, and MAPE. All experiments are conducted in an environment with an AMD EPYC 7532 @2.40GHz, NVIDIA RTX A6000 GPU (48GB), 128GB RAM, and Ubuntu 20.04. The default deep learning library is PyTorch 2.2.1, and the Python version is 3.11.
 
-请转到“BasicTS-master”目录下，然后可以使用以下命令来运行我们的模型：
+Go to the “BasicTS-master” directory and use the following commands to run our model:
 
 ```shell
 # SD
@@ -99,17 +99,17 @@ python experiments/train_seed.py -c baselines/FaST/ca_96_192.py -g 0
 python experiments/train_seed.py -c baselines/FaST/ca_96_672.py -g 0
 ```
 
-### 1.5FaST模型复现
+### 1.5FaST Model Reproduction
 
-由于空间限制，这里我们仅提供了在SD数据集上96预测48的模型参数，您可以使用这个模型参数从而复现我们论文中报告的结果。在“BasicTS-master”目录下执行以下命令：
+Due to space limitations, we provide only the model parameters for the 96-forecasting-48 case on the SD dataset, which can be used to reproduce the results reported in our paper. Execute the following command in the “BasicTS-master” directory:
 
 ``` shell
 python experiments/evaluate.py -cfg  baselines/FaST/sd_96_48.py -ckpt Parameters_FaST/sd/96_48/FaST_best_val_MAE.pt -g 0
 ```
 
-### 1.6基线复现
+### 1.6Baseline Reproduction
 
-可以使用以下命令来复现基线模型：
+Use the following commands to reproduce baseline models:
 
 ```shell
 # STID
@@ -212,8 +212,9 @@ python experiments/train_seed.py -c baselines/GWNet/sd_96_672.py -g 0
 
 
 # SGP
-# 请参考："https://github.com/Graph-Machine-Learning-Group/sgp"配置相关环境
-# 切换到sgp目录
+# Please refer to: ‘https://github.com/Graph-Machine-Learning-Group/sgp’ to configure the relevant environment
+# Switch to the sgp directory
+# Copy data
 cd BasicTS-master/baselines/sgp-main
 # SGP on SD dataset
 python experiments/run_traffic_sgps_sd_96_48.py 
@@ -222,8 +223,8 @@ python experiments/run_traffic_sgps_sd_96_192.py
 python experiments/run_traffic_sgps_sd_96_672.py 
 
 # RPMixer
-# 请参考："https://sites.google.com/view/rpmixer"配置相关环境
-# 切换到RPMixer目录
+# Please refer to: ‘https://sites.google.com/view/rpmixer’ to configure the relevant environment
+# Switch to the RPMixer directory
 cd BasicTS-master/baselines/RPMixer
 # RPMixer on SD dataset
 python sd_96_48.py
