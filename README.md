@@ -46,7 +46,7 @@
 pip install -r requirements.txt
 ```
 
-将下载好的数据解压放到row_dataset目录下，然后按顺序使用下面的命令生成模型训练所需的流量数据。
+将下载好的数据解压放到"row_dataset"目录下，然后按顺序使用下面的命令生成模型训练所需的流量数据。
 
 ```shell
 python row_dataset/generate_data.py
