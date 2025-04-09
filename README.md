@@ -204,7 +204,6 @@ python experiments/train_seed.py -c baselines/GWNet/sd_96_672.py -g 0
 # SGP
 # Please refer to: ‘https://github.com/Graph-Machine-Learning-Group/sgp’ to configure the relevant environment
 # Switch to the sgp directory
-# Copy data
 cd main-master/baselines/sgp-main
 # SGP on SD dataset
 python experiments/run_traffic_sgps_sd_96_48.py 
