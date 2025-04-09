@@ -14,7 +14,7 @@ Install environment dependencies using the following command:
 pip install -r requirements.txt
 ```
 
-Unzip the downloaded data into the "DataPipeline" directory. Then, sequentially use the following commands to generate the traffic data required for model training:
+Unzip the downloaded data into the `DataPipeline` directory. Then, sequentially use the following commands to generate the traffic data required for model training:
 
 ```shell
 python DataPipeline/generate_data.py
@@ -45,15 +45,15 @@ For more dataset details, refer to literature [1].
 
 ### 1.2 Data Generation for Model Training
 We use the 2019 SD, GLA, and CA datasets. First, we obtain all samples through a sliding window, then split the samples into training, validation, and test sets in a 6:2:2 ratio.
-The generated data will be stored in the “main-master/datasets” directory. In each data directory, the `his.npz` file stores raw traffic flow values along with derived daily and weekly features. The `adj_mx.pkl` file contains the adjacency matrix for the data, and `desc.json` stores the data information. Other folders, such as “{input_len}_{output_len}”, store the sample indices for the training, validation, and test sets for the corresponding forecast length.
+The generated data will be stored in the `main-master/datasets` directory. In each data directory, the `his.npz` file stores raw traffic flow values along with derived daily and weekly features. The `adj_mx.pkl` file contains the adjacency matrix for the data, and `desc.json` stores the data information. Other folders, such as `{input_len}_{output_len}`, store the sample indices for the training, validation, and test sets for the corresponding forecast length.
 
 
 ### 1.3 Experimental Setting
 
-Our model is implemented based on the "BasicTS" framework. The FaST uses the Adam optimizer with an initial learning rate of 0.002, and a weight decay parameter of 0.0001 for regularization. During the FaST training process, the learning rate scheduling strategy uses `MultiStepLR`, which decays the learning rate by a factor of 0.5 at the 10th, 20th, 30th, 40th, and 50th epochs for multi-stage progressive optimization, helping the model converge more stably. The maximum training epochs for all methods are set to 100, with early stopping on the validation set to determine the best parameters. The performance is evaluated using MAE, RMSE, and MAPE. All experiments are conducted in an environment with an AMD EPYC 7532 @2.40GHz, NVIDIA RTX A6000 GPU (48GB), 128GB RAM, and Ubuntu 20.04. The default deep learning library is PyTorch 2.2.1, and the Python version is 3.11.8.
+Our model is implemented based on the `BasicTS` framework. The FaST uses the Adam optimizer with an initial learning rate of 0.002, and a weight decay parameter of 0.0001 for regularization. During the FaST training process, the learning rate scheduling strategy uses `MultiStepLR`, which decays the learning rate by a factor of 0.5 at the 10th, 20th, 30th, 40th, and 50th epochs for multi-stage progressive optimization, helping the model converge more stably. The maximum training epochs for all methods are set to 100, with early stopping on the validation set to determine the best parameters. The performance is evaluated using MAE, RMSE, and MAPE. All experiments are conducted in an environment with an AMD EPYC 7532 @2.40GHz, NVIDIA RTX A6000 GPU (48GB), 128GB RAM, and Ubuntu 20.04. The default deep learning library is PyTorch 2.2.1, and the Python version is 3.11.8.
 
 ### 1.4 Training FaST Model
-Go to the “main-master” directory and use the following commands to run our model:
+Go to the `main-master` directory and use the following commands to run our model:
 
 ```shell
 # FaST on SD dataset
@@ -79,9 +79,9 @@ python experiments/train_seed.py -c FaST/ca_96_672.py -g 0
 
 Due to storage limitations in the anonymous repository, we provide all model parameters trained on the SD dataset. These parameters are sufficient to reproduce the core results reported in this paper.
 
-The trained parameters for other datasets will be released to a publicly accessible cloud drive (e.g., Google Drive, Baidu Netdisk) after the paper is accepted, ensuring full reproducibility.
+The trained parameters for other datasets will be released to a publicly accessible cloud drive after the paper is accepted, ensuring full reproducibility.
 
-To reproduce the results on the SD dataset, please execute the following command in the “main-master” directory:
+To reproduce the results on the SD dataset, please execute the following command in the `main-master` directory:
 
 ``` shell
 python experiments/evaluate.py -cfg  FaST/sd_96_48.py -ckpt Parameters_FaST/sd/96_48/FaST_best_val_MAE.pt -g 0
