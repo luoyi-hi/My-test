@@ -77,13 +77,11 @@ python experiments/train_seed.py -c FaST/ca_96_672.py -g 0
 
 ### 1.5 FaST Model Reproduction: Reproducing FaST's experiment results using our trained parameters
 
-## 修改，改成SD上全部，然后其它的由于匿名仓库空间限制，在论文录用后，会上传到公共网盘
+Due to storage limitations in the anonymous repository, we provide all model parameters trained on the SD dataset.These parameters are sufficient to reproduce the core results reported in this paper.
 
-Due to storage limitations, we provide the model parameters trained on the SD dataset for the 48-step, 96-step, and 192-step forecasting tasks. These are sufficient for reproducing the key experimental results reported in this paper.
+The trained parameters for other datasets will be released to a publicly accessible cloud drive (e.g., Google Drive, Baidu Netdisk) after the paper is accepted, ensuring full reproducibility.
 
-The trained parameters for other experiments will be uploaded to a public cloud drive upon the acceptance of this paper.
-
-To reproduce the SD results, execute the following command in the “main-master” directory:
+To reproduce the results on the SD dataset, please execute the following command in the “main-master” directory:
 
 ``` shell
 python experiments/evaluate.py -cfg  FaST/sd_96_48.py -ckpt Parameters_FaST/sd/96_48/FaST_best_val_MAE.pt -g 0
