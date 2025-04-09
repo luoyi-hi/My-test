@@ -6,7 +6,7 @@
 
 The CA dataset used in our work is derived from the Performance Measurement System (PeMS) maintained by the California Department of Transportation (CalTrans). For specific details, refer to the literature [1]. The San Diego (SD) and Greater Los Angeles (GLA) areas are two representative subregions selected from the CA dataset, containing 716 and 3834 sensors, respectively. 
 
-The dataset can be downloaded from the following link: https://www.kaggle.com/datasets/liuxu77/largest. The link contains seven files. To reproduce our experiment results, you need to download the following three files: “ca_his_raw_2019.h5”, “ca_meta.csv”, “ca_rn_adj.npy”.
+The dataset can be downloaded from the following link: https://www.kaggle.com/datasets/liuxu77/largest. The link contains seven files. To reproduce our experiment results, you need to download the following three files: `ca_his_raw_2019.h5`, `ca_meta.csv`, `ca_rn_adj.npy`.
 
 Install environment dependencies using the following command:
 
