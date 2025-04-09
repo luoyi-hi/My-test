@@ -43,14 +43,12 @@ For more dataset details, refer to literature [1].
 
 [1] Xu Liu, Yutong Xia, Yuxuan Liang, Junfeng Hu, Yiwei Wang, Lei Bai, Chao Huang, Zhenguang Liu, Bryan Hooi, and Roger Zimmermann. 2023. LargeST: A Benchmark Dataset for Large-Scale Traffic Forecasting. In The Annual Conference on Neural Information Processing Systems. New Orleans, LA, USA.
 
-
-
-### 1.3 Data Description
+### 1.2 Data Description
 We use the 2019 SD, GLA, and CA datasets. First, we obtain all samples through a sliding window, then split the samples into training, validation, and test sets in a 6:2:2 ratio.
 The generated data will be stored in the “BasicTS-master/datasets” directory. In each data directory, the “his.npz” file contains the raw traffic flow features, as well as the corresponding daily and weekly features. The “adj_mx.pkl” file contains the adjacency matrix for the data, and “desc.json” stores the data information. Other folders, such as “{input_len}_{output_len}”, store the sample indices for the training, validation, and test sets for the corresponding forecast length. The number of samples for each forecast step is summarized in Table 3:
 
 
-### 1.4 Experimental Setup
+### 1.3 Experimental Setup
 
 We use the 2019 SD, GLA, and CA datasets. First, we obtain all samples through a sliding window, then split the samples into training, validation, and test sets in a 6:2:2 ratio.
 
@@ -58,8 +56,7 @@ The generated data will be stored in the “BasicTS-master/datasets” directory
 
 Our model is implemented based on the "BasicTS" framework. The FaST model uses the Adam optimizer with an initial learning rate of 0.002, and a weight decay parameter of 0.0001 for regularization. During the FaST training process, the learning rate scheduling strategy uses `MultiStepLR`, which decays the learning rate by a factor of 0.5 at the 10th, 20th, 30th, 40th, and 50th epochs for multi-stage progressive optimization, helping the model converge more stably. The maximum training epochs for all methods are set to 100, with early stopping on the validation set to determine the best parameters. The performance is evaluated using MAE, RMSE, and MAPE. All experiments are conducted in an environment with an AMD EPYC 7532 @2.40GHz, NVIDIA RTX A6000 GPU (48GB), 128GB RAM, and Ubuntu 20.04. The default deep learning library is PyTorch 2.2.1, and the Python version is 3.11.
 
-
-### 1.5 Training FaST model
+### 1.4 Training FaST model
 Go to the “BasicTS-master” directory and use the following commands to run our model:
 
 ```shell
@@ -82,15 +79,17 @@ python experiments/train_seed.py -c baselines/FaST/ca_96_192.py -g 0
 python experiments/train_seed.py -c baselines/FaST/ca_96_672.py -g 0
 ```
 
-### 1.5 FaST Model Reproduction: Reproducing FaST's experiment results using our trained parameters
+### 1.6 FaST Model Reproduction: Reproducing FaST's experiment results using our trained parameters
 
-Due to space limitations, we provide only the model parameters for the 96-forecasting-48 case on the SD dataset, which can be used to reproduce the results reported in our paper. Execute the following command in the “BasicTS-master” directory:
+Owing to storage constraints, we currently provide only the model parameters trained on the SD dataset, which are sufficient for reproducing the corresponding results reported in this paper.
+
+The trained parameters for other datasets will be uploaded to a public cloud drive upon the acceptance of this paper. To reproduce the SD results, execute the following command in the “BasicTS-master” directory:
 
 ``` shell
 python experiments/evaluate.py -cfg  baselines/FaST/sd_96_48.py -ckpt Parameters_FaST/sd/96_48/FaST_best_val_MAE.pt -g 0
 ```
 
-### 1.6 Baseline Reproduction
+### 1.7 Baseline Reproduction
 
 Use the following commands to reproduce baseline models:
 
