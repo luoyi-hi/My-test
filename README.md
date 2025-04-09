@@ -45,7 +45,7 @@ For more dataset details, refer to literature [1].
 
 ### 1.2 Data Generation for Model Training
 We use the 2019 SD, GLA, and CA datasets. First, we obtain all samples through a sliding window, then split the samples into training, validation, and test sets in a 6:2:2 ratio.
-The generated data will be stored in the “BasicTS-master/datasets” directory. In each data directory, the “his.npz” file contains the raw traffic flow features, as well as the corresponding daily and weekly features. The “adj_mx.pkl” file contains the adjacency matrix for the data, and “desc.json” stores the data information. Other folders, such as “{input_len}_{output_len}”, store the sample indices for the training, validation, and test sets for the corresponding forecast length.
+The generated data will be stored in the “main-master/datasets” directory. In each data directory, the “his.npz” file contains the raw traffic flow features, as well as the corresponding daily and weekly features. The “adj_mx.pkl” file contains the adjacency matrix for the data, and “desc.json” stores the data information. Other folders, such as “{input_len}_{output_len}”, store the sample indices for the training, validation, and test sets for the corresponding forecast length.
 
 
 ### 1.3 Experimental Setup
@@ -53,7 +53,7 @@ The generated data will be stored in the “BasicTS-master/datasets” directory
 Our model is implemented based on the "BasicTS" framework. The FaST model uses the Adam optimizer with an initial learning rate of 0.002, and a weight decay parameter of 0.0001 for regularization. During the FaST training process, the learning rate scheduling strategy uses `MultiStepLR`, which decays the learning rate by a factor of 0.5 at the 10th, 20th, 30th, 40th, and 50th epochs for multi-stage progressive optimization, helping the model converge more stably. The maximum training epochs for all methods are set to 100, with early stopping on the validation set to determine the best parameters. The performance is evaluated using MAE, RMSE, and MAPE. All experiments are conducted in an environment with an AMD EPYC 7532 @2.40GHz, NVIDIA RTX A6000 GPU (48GB), 128GB RAM, and Ubuntu 20.04. The default deep learning library is PyTorch 2.2.1, and the Python version is 3.11.
 
 ### 1.4 Training FaST model
-Go to the “BasicTS-master” directory and use the following commands to run our model:
+Go to the “main-master” directory and use the following commands to run our model:
 
 ```shell
 # FaST on SD dataset
@@ -81,7 +81,7 @@ Due to storage limitations, we provide the model parameters trained on the SD da
 
 The trained parameters for other experiments will be uploaded to a public cloud drive upon the acceptance of this paper.
 
-To reproduce the SD results, execute the following command in the “BasicTS-master” directory:
+To reproduce the SD results, execute the following command in the “main-master” directory:
 
 ``` shell
 python experiments/evaluate.py -cfg  FaST/sd_96_48.py -ckpt Parameters_FaST/sd/96_48/FaST_best_val_MAE.pt -g 0
@@ -197,7 +197,7 @@ python experiments/train_seed.py -c baselines/GWNet/sd_96_672.py -g 0
 # Please refer to: ‘https://github.com/Graph-Machine-Learning-Group/sgp’ to configure the relevant environment
 # Switch to the sgp directory
 # Copy data
-cd BasicTS-master/baselines/sgp-main
+cd main-master/baselines/sgp-main
 # SGP on SD dataset
 python experiments/run_traffic_sgps_sd_96_48.py 
 python experiments/run_traffic_sgps_sd_96_96.py 
@@ -207,7 +207,7 @@ python experiments/run_traffic_sgps_sd_96_672.py
 # RPMixer
 # Please refer to: ‘https://sites.google.com/view/rpmixer’ to configure the relevant environment
 # Switch to the RPMixer directory
-cd BasicTS-master/baselines/RPMixer
+cd main-master/baselines/RPMixer
 # RPMixer on SD dataset
 python sd_96_48.py
 python sd_96_96.py
