@@ -6,7 +6,7 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 def generate_and_split_indices_sequential(data_name, input_step, output_step):
 
-    data_npz = np.load(f"../DataPipeline/datasets/{data_name}/his.npz")
+    data_npz = np.load(f"../main-master/datasets/{data_name}/his.npz")
 
     data = data_npz["data"]
     T, N, D = data.shape
@@ -22,20 +22,20 @@ def generate_and_split_indices_sequential(data_name, input_step, output_step):
     idx_test = indices[val_end:]
 
     target_dir = os.path.join(
-        "..", "DataPipeline", "datasets", data_name, f"{input_step}_{output_step}"
+        "..", "main-master", "datasets", data_name, f"{input_step}_{output_step}"
     )
     os.makedirs(target_dir, exist_ok=True)
 
     np.save(
-        f"../DataPipeline/datasets/{data_name}/{input_step}_{output_step}/idx_train.npy",
+        f"../main-master/datasets/{data_name}/{input_step}_{output_step}/idx_train.npy",
         idx_train,
     )
     np.save(
-        f"../DataPipeline/datasets/{data_name}/{input_step}_{output_step}/idx_val.npy",
+        f"../main-master/datasets/{data_name}/{input_step}_{output_step}/idx_val.npy",
         idx_val,
     )
     np.save(
-        f"../DataPipeline/datasets/{data_name}/{input_step}_{output_step}/idx_test.npy",
+        f"../main-master/datasets/{data_name}/{input_step}_{output_step}/idx_test.npy",
         idx_test,
     )
 

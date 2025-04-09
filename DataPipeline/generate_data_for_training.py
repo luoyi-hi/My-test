@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 
 
-def generate_data_and_idx(df, add_time_of_day, add_day_of_week):
+def generate_data(df, add_time_of_day, add_day_of_week):
     _, num_nodes = df.shape
     data = np.expand_dims(df.values, axis=-1)
 
@@ -36,10 +36,10 @@ def generate_train_val_test(args):
         df_tmp = pd.read_hdf(args.dataset + "_his_" + y + ".h5")
         df = pd.concat([df, df_tmp], axis=0, ignore_index=True)
 
-    data = generate_data_and_idx(df, args.tod, args.dow)
+    data = generate_data(df, args.tod, args.dow)
 
     # save
-    out_dir = "../DataPipeline/datasets/" + args.dataset + "/"
+    out_dir = "../main-master/datasets/" + args.dataset + "/"
     if not os.path.exists(out_dir):
         os.makedirs(out_dir)
     np.savez_compressed(os.path.join(out_dir, "his.npz"), data=data)
