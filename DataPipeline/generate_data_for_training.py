@@ -39,7 +39,7 @@ def generate_train_val_test(args):
     data = generate_data_and_idx(df, args.tod, args.dow)
 
     # save
-    out_dir = "../BasicTS-master/datasets/" + args.dataset + "/"
+    out_dir = "../DataPipeline/datasets/" + args.dataset + "/"
     if not os.path.exists(out_dir):
         os.makedirs(out_dir)
     np.savez_compressed(os.path.join(out_dir, "his.npz"), data=data)

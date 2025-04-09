@@ -10,7 +10,7 @@ for data_name in data_names:
     npy_file_path = f"{data_name}_rn_adj.npy"
     data = np.load(npy_file_path)
 
-    pkl_file_path = f"../BasicTS-master/datasets/{data_name}/adj_mx.pkl"
+    pkl_file_path = f"../DataPipeline/datasets/{data_name}/adj_mx.pkl"
 
     with open(pkl_file_path, "wb") as f:
         pickle.dump(data, f)

@@ -14,7 +14,7 @@ Install environment dependencies using the following command:
 pip install -r requirements.txt
 ```
 
-Unzip the downloaded data into the "row_dataset" directory. Then, sequentially use the following commands to generate the traffic data required for model training:
+Unzip the downloaded data into the "DataPipeline" directory. Then, sequentially use the following commands to generate the traffic data required for model training:
 
 ```shell
 python DataPipeline/generate_data.py
