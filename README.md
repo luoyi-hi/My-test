@@ -84,7 +84,9 @@ The trained parameters for other experiments will be uploaded to a public cloud 
 To reproduce the SD results, execute the following command in the “BasicTS-master” directory:
 
 ``` shell
-python experiments/evaluate.py -cfg  baselines/FaST/sd_96_48.py -ckpt Parameters_FaST/sd/96_48/FaST_best_val_MAE.pt -g 0
+python experiments/evaluate.py -cfg  FaST/sd_96_48.py -ckpt Parameters_FaST/sd/96_48/FaST_best_val_MAE.pt -g 0
+python experiments/evaluate.py -cfg  FaST/sd_96_96.py -ckpt Parameters_FaST/sd/96_96/FaST_best_val_MAE.pt -g 0
+python experiments/evaluate.py -cfg  FaST/sd_96_192.py -ckpt Parameters_FaST/sd/96_192/FaST_best_val_MAE.pt -g 0
 ```
 
 ### 1.6 Baseline Reproduction
