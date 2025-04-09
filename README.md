@@ -17,15 +17,15 @@ pip install -r requirements.txt
 Unzip the downloaded data into the "row_dataset" directory. Then, sequentially use the following commands to generate the traffic data required for model training:
 
 ```shell
-python row_dataset/generate_data.py
+python DataPipeline/generate_data.py
 
-python row_dataset/generate_data_for_training.py --dataset ca --years 2019
-python row_dataset/generate_data_for_training.py --dataset gla --years 2019
-python row_dataset/generate_data_for_training.py --dataset sd --years 2019
+python DataPipeline/generate_data_for_training.py --dataset ca --years 2019
+python DataPipeline/generate_data_for_training.py --dataset gla --years 2019
+python DataPipeline/generate_data_for_training.py --dataset sd --years 2019
 
-python row_dataset/process_adj.py
+python DataPipeline/process_adj.py
 
-python row_dataset/generate_idx.py
+python DataPipeline/generate_idx.py
 ```
 The statistics of the dataset are summarized in Table 1:
 
@@ -57,22 +57,22 @@ Go to the “BasicTS-master” directory and use the following commands to run o
 
 ```shell
 # FaST on SD dataset
-python experiments/train_seed.py -c baselines/FaST/sd_96_48.py -g 0
-python experiments/train_seed.py -c baselines/FaST/sd_96_96.py -g 0
-python experiments/train_seed.py -c baselines/FaST/sd_96_192.py -g 0
-python experiments/train_seed.py -c baselines/FaST/sd_96_672.py -g 0
+python experiments/train_seed.py -c FaST/sd_96_48.py -g 0
+python experiments/train_seed.py -c FaST/sd_96_96.py -g 0
+python experiments/train_seed.py -c FaST/sd_96_192.py -g 0
+python experiments/train_seed.py -c FaST/sd_96_672.py -g 0
 
 # FaST on GLA dataset
-python experiments/train_seed.py -c baselines/FaST/gla_96_48.py -g 0
-python experiments/train_seed.py -c baselines/FaST/gla_96_96.py -g 0
-python experiments/train_seed.py -c baselines/FaST/gla_96_192.py -g 0
-python experiments/train_seed.py -c baselines/FaST/gla_96_672.py -g 0
+python experiments/train_seed.py -c FaST/gla_96_48.py -g 0
+python experiments/train_seed.py -c FaST/gla_96_96.py -g 0
+python experiments/train_seed.py -c FaST/gla_96_192.py -g 0
+python experiments/train_seed.py -c FaST/gla_96_672.py -g 0
 
 # FaST on CA dataset
-python experiments/train_seed.py -c baselines/FaST/ca_96_48.py -g 0
-python experiments/train_seed.py -c baselines/FaST/ca_96_96.py -g 0
-python experiments/train_seed.py -c baselines/FaST/ca_96_192.py -g 0
-python experiments/train_seed.py -c baselines/FaST/ca_96_672.py -g 0
+python experiments/train_seed.py -c FaST/ca_96_48.py -g 0
+python experiments/train_seed.py -c FaST/ca_96_96.py -g 0
+python experiments/train_seed.py -c FaST/ca_96_192.py -g 0
+python experiments/train_seed.py -c FaST/ca_96_672.py -g 0
 ```
 
 ### 1.5 FaST Model Reproduction: Reproducing FaST's experiment results using our trained parameters
