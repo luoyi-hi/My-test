@@ -4,39 +4,7 @@
 
 ### 1.1 Dataset Description
 
-The CA dataset we use is from the Performance Measurement System (PeMS) maintained by the California Department of Transportation (CalTrans). For specific details, refer to the literature [1]. The San Diego (SD) and Greater Los Angeles (GLA) areas are two representative subregions selected from the CA dataset, containing 716 and 3834 sensors, respectively. The metadata for all sensors is summarized in Table 1:
-
-#### Table 1: Sensor Metadata Description
-
-| Attribute | Description                                   | Possible Range of Values              |
-| --------- | --------------------------------------------- | ------------------------------------- |
-| ID        | The identifier of a sensor in PeMS            | 6 to 9 digits number                  |
-| Lat       | The latitude of a sensor                      | Real number                           |
-| Lng       | The longitude of a sensor                     | Real number                           |
-| District  | The district of a sensor in PeMS              | 3, 4, 5, 6, 7, 8, 10, 11, 12          |
-| County    | The county of a sensor in California          | String                                |
-| Fwy       | The highway where a sensor is located         | String starts with 'I', 'US', or 'SR' |
-| Lane      | The number of lanes where a sensor is located | 1, 2, 3, 4, 5, 6, 7, 8                |
-| Type      | The type of a sensor                          | Mainline                              |
-| Direction | The direction of the highway                  | N, S, E, W                            |
-
-We use the 2019 SD, GLA, and CA datasets. First, we obtain all samples through a sliding window, then split the samples into training, validation, and test sets in a 6:2:2 ratio. The statistics of the dataset are summarized in Table 2:
-
-#### Table 2: **Dataset statistics**
-
-| Data | #nodes | Time interval | Time range           | Std    | Mean   | Features     |
-| ---- | ------ | ------------- | -------------------- | ------ | ------ | ------------ |
-| SD   | 716    | 15 minute     | [1/1/2019, 1/1/2020) | 184.02 | 244.31 | traffic flow |
-| GLA  | 3,834  | 15 minute     | [1/1/2019, 1/1/2020) | 187.77 | 276.82 | traffic flow |
-| CA   | 8,600  | 15 minute     | [1/1/2019, 1/1/2020) | 177.12 | 237.39 | traffic flow |
-
-For more dataset details, refer to literature [1].
-
-**Reference**
-
-[1] Xu Liu, Yutong Xia, Yuxuan Liang, Junfeng Hu, Yiwei Wang, Lei Bai, Chao Huang, Zhenguang Liu, Bryan Hooi, and Roger Zimmermann. 2023. LargeST: A Benchmark Dataset for Large-Scale Traffic Forecasting. In The Annual Conference on Neural Information Processing Systems. New Orleans, LA, USA.
-
-### 1.2 Data Preparation
+The CA dataset we use is from the Performance Measurement System (PeMS) maintained by the California Department of Transportation (CalTrans). For specific details, refer to the literature [1]. The San Diego (SD) and Greater Los Angeles (GLA) areas are two representative subregions selected from the CA dataset, containing 716 and 3834 sensors, respectively. 
 
 The dataset can be downloaded from the following link: https://www.kaggle.com/datasets/liuxu77/largest. The link contains seven files. To reproduce our experiment results, you need to download the following three files: “ca_his_raw_2019.h5”, “ca_meta.csv”, “ca_rn_adj.npy”.
 
@@ -59,24 +27,39 @@ python row_dataset/process_adj.py
 
 python row_dataset/generate_idx.py
 ```
+The statistics of the dataset are summarized in Table 2:
+
+#### Table 2: **Dataset statistics**
+
+| Data | #nodes | Time interval | Time range           | Std    | Mean   | Features     |
+| ---- | ------ | ------------- | -------------------- | ------ | ------ | ------------ |
+| SD   | 716    | 15 minute     | [1/1/2019, 1/1/2020) | 184.02 | 244.31 | traffic flow |
+| GLA  | 3,834  | 15 minute     | [1/1/2019, 1/1/2020) | 187.77 | 276.82 | traffic flow |
+| CA   | 8,600  | 15 minute     | [1/1/2019, 1/1/2020) | 177.12 | 237.39 | traffic flow |
+
+For more dataset details, refer to literature [1].
+
+**Reference**
+
+[1] Xu Liu, Yutong Xia, Yuxuan Liang, Junfeng Hu, Yiwei Wang, Lei Bai, Chao Huang, Zhenguang Liu, Bryan Hooi, and Roger Zimmermann. 2023. LargeST: A Benchmark Dataset for Large-Scale Traffic Forecasting. In The Annual Conference on Neural Information Processing Systems. New Orleans, LA, USA.
+
+
 
 ### 1.3 Data Description
-
+We use the 2019 SD, GLA, and CA datasets. First, we obtain all samples through a sliding window, then split the samples into training, validation, and test sets in a 6:2:2 ratio.
 The generated data will be stored in the “BasicTS-master/datasets” directory. In each data directory, the “his.npz” file contains the raw traffic flow features, as well as the corresponding daily and weekly features. The “adj_mx.pkl” file contains the adjacency matrix for the data, and “desc.json” stores the data information. Other folders, such as “{input_len}_{output_len}”, store the sample indices for the training, validation, and test sets for the corresponding forecast length. The number of samples for each forecast step is summarized in Table 3:
 
-#### Table 3: The number of training, validation, and test samples for each forecast horizon
 
-| Forecast Horizon | Number of Training Samples | **Number of Validation Samples** | Number of Test Samples |
-| ---------------- | -------------------------- | -------------------------------- | ---------------------- |
-| 48               | 20938                      | 6979                             | 6980                   |
-| 96               | 20909                      | 6969                             | 6971                   |
-| 192              | 20851                      | 6950                             | 6952                   |
-| 672              | 20563                      | 6854                             | 6856                   |
+### 1.4 Experimental Setup
 
-### 1.4 Experiment Execution
+We use the 2019 SD, GLA, and CA datasets. First, we obtain all samples through a sliding window, then split the samples into training, validation, and test sets in a 6:2:2 ratio.
+
+The generated data will be stored in the “BasicTS-master/datasets” directory. In each data directory, the “his.npz” file contains the raw traffic flow features, as well as the corresponding daily and weekly features. The “adj_mx.pkl” file contains the adjacency matrix for the data, and “desc.json” stores the data information. Other folders, such as “{input_len}_{output_len}”, store the sample indices for the training, validation, and test sets for the corresponding forecast length. 
 
 Our model is implemented based on the "BasicTS" framework. The FaST model uses the Adam optimizer with an initial learning rate of 0.002, and a weight decay parameter of 0.0001 for regularization. During the FaST training process, the learning rate scheduling strategy uses `MultiStepLR`, which decays the learning rate by a factor of 0.5 at the 10th, 20th, 30th, 40th, and 50th epochs for multi-stage progressive optimization, helping the model converge more stably. The maximum training epochs for all methods are set to 100, with early stopping on the validation set to determine the best parameters. The performance is evaluated using MAE, RMSE, and MAPE. All experiments are conducted in an environment with an AMD EPYC 7532 @2.40GHz, NVIDIA RTX A6000 GPU (48GB), 128GB RAM, and Ubuntu 20.04. The default deep learning library is PyTorch 2.2.1, and the Python version is 3.11.
 
+
+### 1.5 Training FaST model
 Go to the “BasicTS-master” directory and use the following commands to run our model:
 
 ```shell
@@ -99,7 +82,7 @@ python experiments/train_seed.py -c baselines/FaST/ca_96_192.py -g 0
 python experiments/train_seed.py -c baselines/FaST/ca_96_672.py -g 0
 ```
 
-### 1.5 FaST Model Reproduction
+### 1.5 FaST Model Reproduction: Reproducing FaST's experiment results using our trained parameters
 
 Due to space limitations, we provide only the model parameters for the 96-forecasting-48 case on the SD dataset, which can be used to reproduce the results reported in our paper. Execute the following command in the “BasicTS-master” directory:
 
