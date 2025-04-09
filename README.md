@@ -87,6 +87,7 @@ To reproduce the results on the SD dataset, please execute the following command
 python experiments/evaluate.py -cfg  FaST/sd_96_48.py -ckpt Parameters_FaST/sd/96_48/FaST_best_val_MAE.pt -g 0
 python experiments/evaluate.py -cfg  FaST/sd_96_96.py -ckpt Parameters_FaST/sd/96_96/FaST_best_val_MAE.pt -g 0
 python experiments/evaluate.py -cfg  FaST/sd_96_192.py -ckpt Parameters_FaST/sd/96_192/FaST_best_val_MAE.pt -g 0
+python experiments/evaluate.py -cfg  FaST/sd_96_192.py -ckpt Parameters_FaST/sd/96_672/FaST_best_val_MAE.pt -g 0
 ```
 ### 1.6 Experimental Results
 Table 2 presents the performance comparison of different models on time series forecasting tasks. "T" refers to temporal-centric methods, while "ST" denotes spatial-temporal-centric methods. Best-performing results are bolded. The notation "96=>48" denotes training on the past 96 time steps to predict the next 48.
