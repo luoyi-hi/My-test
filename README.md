@@ -1,4 +1,4 @@
-# FaST: 
+# FaST
 
 ## 1. Experimental Details
 
