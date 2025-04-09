@@ -7,9 +7,6 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 year = "2019"  # please specify the year, our experiments use 2019
 ca_his = pd.read_hdf("ca_his_raw_" + year + ".h5")
 
-ca_his.values.max()
-
-
 ### please comment this line if you don't want to do resampling
 ca_his = ca_his.resample("15T").mean().round(0)
 
