@@ -3,7 +3,7 @@ import sys
 import torch
 from easydict import EasyDict
 
-sys.path.append(os.path.abspath(__file__ + "/../../.."))
+sys.path.append(os.path.abspath(__file__ + "/../.."))
 
 from basicts.metrics import masked_mae, masked_mape, masked_rmse
 from basicts.data import MyTimeSeries
