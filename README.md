@@ -93,10 +93,6 @@ Table 2 presents the performance comparison of different models on time series f
 #### Table 2: **Performance comparisons**
 ![Table 2 Results](results/table2.png)
 
-Table 3 presents the computational costs on all datasets, including the GPU memory usage (G.: GB), the number of parameters (P.: Million), training time (T.:minute/epoch), and inference time (I.: minute).
-#### Table 3: **The computational costs on all datasets**
-![Table 3 Results](results/table3.png)
-
 ### 1.7 Baseline Reproduction
 
 Use the following commands to reproduce baseline models:
