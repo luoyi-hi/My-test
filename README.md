@@ -90,10 +90,12 @@ python experiments/evaluate.py -cfg  FaST/sd_96_192.py -ckpt Parameters_FaST/sd/
 ```
 ### 1.6 Experimental Results
 Table 2 presents the performance comparison of different models on time series forecasting tasks. "T" refers to temporal-centric methods, while "ST" denotes spatial-temporal-centric methods. Best-performing results are bolded. The notation "96=>48" denotes training on the past 96 time steps to predict the next 48.
-#### Table 2: **Performance comparisons.**
+#### Table 2: **Performance comparisons**
 ![Table 2 Results](results/table2.png)
 
-
+Table 3 presents the computational costs on all datasets, including the GPU memory usage (G.: GB), the number of parameters (P.: Million), training time (T.:minute/epoch), and inference time (I.: minute).
+#### Table 3: **The computational costs on all datasets**
+![Table 3 Results](results/table3.png)
 
 ### 1.7 Baseline Reproduction
 
